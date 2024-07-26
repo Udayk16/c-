@@ -1,0 +1,142 @@
+arrays 
+
+Relationship between Array and Pointers
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    // Defining an array
+    int arr[] = { 1, 2, 3, 4 };
+
+    // Define a pointer
+    int* ptr = arr;
+
+    // Printing address of the arrary using array name
+    cout << "Memory address of arr: " << &arr << endl;
+
+    // Printing address of the array using ptr
+    cout << "Memory address of arr: " << ptr << endl;
+
+    return 0;
+}
+
+Memory address of arr: 0x7fff2f2cabb0
+Memory address of arr: 0x7fff2f2cabb0
+
+
+----------------------------------------------------------------------------------
+Printing Array Elements without Indexing in C++
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+    // Define an array
+    int arr[] = { 11, 22, 33, 44 };
+
+    // Print elements of an array
+    cout << "first element: " << *arr << endl;
+    cout << "Second element: " << *(arr + 1) << endl;
+    cout << "Third element: " << *(arr + 2) << endl;
+    cout << "fourth element: " << *(arr + 3) << endl;
+
+    return 0;
+}
+
+first element: 11
+Second element: 22
+Third element: 33
+fourth element: 44
+
+----------------------------------------------------------------------------------
+
+Passing Array to Function in C++
+
+1. Passing Array as a Pointer
+In this method, we simply pass the array name in function call which means we pass the address to the first element of the array. In this method, we can modify the array elements within the function.
+syntax
+
+return_type function_name ( data_type *array_name ) {
+        // set of statements
+}
+
+
+Note: Array will be treated as a pointer in the passed function no matter what method we use.
+As the array are passed as pointers, they will loose the information about its size leading to a phenomenon named as Array Decay.
+
+
+
+#include <iostream>
+using namespace std;
+
+// passing array as a sized array argument
+void printArraySized(int arr[3], int n)
+{
+    cout << "Array as Sized Array Argument: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+// passing array as an unsized array argument
+void printArrayUnsized(int arr[], int n)
+{
+    cout << "Array as Unsized Array Argument: ";
+    for (int i = 0; i < n; i++) {
+        cout << *(arr + i) << " ";
+    }
+    cout << endl;
+}
+
+// Passing array as a pointer argument
+void printArrayPointer(int* ptr, int n)
+{
+    // Print array elements using pointer ptr
+    // that store the address of array passed
+    cout << "Array as Pointer Argument: ";
+    for (int i = 0; i < n; i++) {
+        cout << ptr[i] << " ";
+    }
+}
+
+// driver code
+int main()
+{
+
+    int arr[] = { 10, 20, 30 };
+
+    // Call function printArray and pass
+    // array and its size to it.
+    printArraySized(arr, 3);
+    printArrayUnsized(arr, 3);
+    printArrayPointer(arr, 3);
+
+    return 0;
+}
+
+Output
+Array as Sized Array Argument: 10 20 30 
+Array as Unsized Array Argument: 10 20 30 
+Array as Pointer Argument: 10 20 30 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
